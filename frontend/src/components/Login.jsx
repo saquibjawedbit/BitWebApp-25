@@ -131,6 +131,19 @@ export default function Login() {
                     Your email has been updated to your institute email address, while your password remains unchanged. If you cannot access the password sent to your old email, please use the "Forgot Password" button.
                   </p>
                 </div>
+                {import.meta.env.VITE_GOOGLE_CLIENT_ID && (
+                  <div className="mb-4 p-4 border-l-4 border-amber-500 bg-amber-50 rounded-md">
+                    <h4 className="text-sm font-bold text-amber-800 mb-1">
+                      Not receiving your OTP?
+                    </h4>
+                    <p className="text-xs text-amber-700">
+                      If you are facing issues with OTP emails, use{" "}
+                      <span className="font-semibold">Sign in with Google</span>{" "}
+                      below with your @bitmesra.ac.in account. It needs no
+                      password and no OTP.
+                    </p>
+                  </div>
+                )}
                 <p className="text-base md:text-lg mb-2 text-gray-600">
                   Enter your login details below.
                 </p>

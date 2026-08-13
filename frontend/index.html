@@ -28,6 +28,16 @@
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7GZH64XV14"></script>
 <script>
+  // Visitors on the campus IP are bounced to the public HTTPS host. The target
+  // comes from VITE_PUBLIC_URL so a new tunnel URL is an env change, not a code
+  // edit. If the var is unset Vite leaves the placeholder and we skip the jump.
+  (function () {
+    var publicUrl = "%VITE_PUBLIC_URL%";
+    if (window.location.hostname === "172.16.220.105" && publicUrl.indexOf("http") === 0) {
+      window.location.href = publicUrl + window.location.pathname + window.location.search;
+    }
+  })();
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
