@@ -11,6 +11,9 @@ export default defineConfig({
     proxy: {
       //"/api": "https://bitwebapp-24.onrender.com",
       "/api": "http://localhost:8000",
+      // socket.io lives at /socket.io, not /api, and needs ws upgrades
+      // forwarded or same-origin chat connections 404.
+      "/socket.io": { target: "http://localhost:8000", ws: true },
     },
   },
   plugins: [react(),
@@ -33,6 +36,9 @@ export default defineConfig({
     proxy: {
       //"/api": "https://bitwebapp-24.onrender.com",
       "/api": "http://localhost:8000",
+      // socket.io lives at /socket.io, not /api, and needs ws upgrades
+      // forwarded or same-origin chat connections 404.
+      "/socket.io": { target: "http://localhost:8000", ws: true },
     },
   },
 });

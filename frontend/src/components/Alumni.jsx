@@ -232,7 +232,9 @@ export default function Alumni() {
       return docUrl;
     }
     if (docUrl.startsWith("/uploads/")) {
-      const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+      // Empty base = same origin, so uploads resolve through the /api proxy
+      // instead of the viewer's own localhost.
+      const baseUrl = import.meta.env.VITE_API_URL || "";
       return `${baseUrl}${docUrl}`;
     }
     return docUrl;

@@ -72,7 +72,9 @@ export default function AlumniTable() {
   const getDocUrl = (url) => {
     if (!url) return "";
     if (url.startsWith("http://") || url.startsWith("https://")) return url;
-    const base = import.meta.env.VITE_API_URL || "http://localhost:8000";
+    // Empty base = same origin; a hardcoded localhost pointed remote viewers
+    // at their own machine.
+    const base = import.meta.env.VITE_API_URL || "";
     return `${base}${url}`;
   };
 

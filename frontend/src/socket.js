@@ -4,10 +4,13 @@ let socket = null;
 
 const createSocket = () => {
   if (!socket) {
-    const API_URL = import.meta.env.VITE_CORS || "http://localhost:8000";
+    // Default to the origin the page was served from. Hardcoding localhost
+    // pointed remote users at their OWN machine, so chat never connected for
+    // anyone but a developer. Same-origin reaches the backend via the
+    // /socket.io proxy and works on localhost, the LAN IP and the tunnel.
+    const API_URL = import.meta.env.VITE_CORS || window.location.origin;
     socket = io(API_URL, {
       withCredentials: true,
-      secure: true, // Force secure connection
       transports: ["websocket"], // WebSocket only mode
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
